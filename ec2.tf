@@ -53,6 +53,8 @@ resource "aws_instance" "my_instance" {
   key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.my_security_group.id]
 
+  user_data = file("./install_nginx.sh")
+
   root_block_device {
     volume_size = var.ec2_root_store_size
     volume_type = "gp3"
