@@ -56,7 +56,7 @@ resource "aws_instance" "my_instance" {
   user_data = file("./install_nginx.sh")
 
   root_block_device {
-    volume_size = var.ec2_root_store_size
+    volume_size = var.env == "prd" ? 20 : var.ec2_root_store_size
     volume_type = "gp3"
 
     tags = {
